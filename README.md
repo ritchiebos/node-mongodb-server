@@ -71,6 +71,6 @@ Onze Nodejs server gaat bijvoorbeeld gebruikt worden door een Angular frontend z
 Jij hebt jouw eigen URL, maar een voorbeeld zou kunnen zijn: 
 
 ```
-[https://angular-avans-starter.herokuapp.com](https://angular-avans-starter.herokuapp.com)
+https://angular-avans-starter.herokuapp.com
 ```
 Dit is dus de *root* domeinnaam van jouw instantie op Heroku, zonder de '/dashboard' route.
