@@ -37,7 +37,7 @@ Stappen:
 >
 > De connectionstring is als volgt opgebouwd:
 > ```
-> mongodb://<DB_USER>:<DB_PASSWORD>@<DB_HOS>:<DB_PORT>/<DB_DATABASE>
+> mongodb://<DB_USER>:<DB_PASSWORD>@<DB_HOST>:<DB_PORT>/<DB_DATABASE>
 > ```
 > Een voorbeeld van een connectionstring:
 > ```
@@ -61,10 +61,16 @@ De variabelen die je moet instellen:
 - DB_PASSWORD: password van de database user
 - DB_PORT: de port waarop je database bereikbaar is
 - DB_USER: username waarmee je in je database inlogt
+- ALLOW_ORIGIN: de URL van je Angular frontend. Hiermee geef je je frontend toegang tot de server. Zie de informatie hieronder.
 
 ### Allow Origin
 Het HTTP protocol verbiedt het aanroepen van een URL van de ene server naar de andere. Dat klinkt misschien raar, maar het zou ervoor kunnen zorgen dat een server stiekem jouw services via je API aanroept. Om dat te voorkomen moet je aangeven vanaf welke oorsprong (of *origin*) jij requests toelaat. Dit heet [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
 
-Onze Nodejs server gaat bijvoorbeeld gebruikt worden door een Angular frontend zoals de [Angular Starterpack](https://github.com/avansinformatica/angular-starterpack). Als je die starterpack gebruikt en ook op Heroku hebt gedeployd (zie daarvoor de handleiding bij de Angular Starterpack) dan heb je een domeinnaam van jouw Angular frontend op Heroku. Dat wordt de waarde die je de omgevingsvariabele bij `ALLOW_ORIGIN` invult.
+Onze Nodejs server gaat bijvoorbeeld gebruikt worden door een Angular frontend zoals de [Angular Starterpack](https://github.com/avansinformatica/angular-starterpack). Als je die starterpack gebruikt en ook op Heroku hebt gedeployd (zie daarvoor de handleiding bij de Angular Starterpack) dan heb je een domeinnaam van jouw Angular frontend op Heroku. Dat wordt de waarde die je de omgevingsvariabele bij `ALLOW_ORIGIN` invult. 
 
-- ALLOW_ORIGIN: de URL van je Angular frontend. Hiermee geef je je frontend toegang tot de server.
+Jij hebt jouw eigen URL, maar een voorbeeld zou kunnen zijn: 
+
+```
+https://angular-avans-starter.herokuapp.com
+```
+Dit is dus de *root* domeinnaam van jouw instantie op Heroku, zonder de '/dashboard' route.
