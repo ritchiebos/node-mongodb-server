@@ -34,15 +34,15 @@ Stappen:
 3. Maak een database aan via de `create new` knop in het dashboard. Kies Amazon als Cloud Provider, kies Sandbox, en klik rechtsonder op `continue`. Kies een Region. Kies zelf een database naam (kleine letters, zonder spaties).
 4. Ga naar het dashboard (de homepage) en klik op je database.
 > Bovenaan de page zie je de MongoDB URI. Dat is de connectionstring voor verbinding met de database. Deze string gaan we in de Nodejs server opbouwen op basis van **environment variables**. Je wilt je username en password namelijk niet hardcode in je applicatie opslaan.
-
-De connectionstring is als volgt opgebouwd:
-```
-mongodb://<DB_USER>:<DB_PASSWORD>@<DB_HOS>:<DB_PORT>/<DB_DATABASE>
-```
-Een voorbeeld van een connectionstring:
-```
-mongodb://<DB_USER>:<DB_PASSWORD>@ds115166.mlab.com:15166/node-mongodb-users
-```
+>
+> De connectionstring is als volgt opgebouwd:
+> ```
+> mongodb://<DB_USER>:<DB_PASSWORD>@<DB_HOS>:<DB_PORT>/<DB_DATABASE>
+> ```
+> Een voorbeeld van een connectionstring:
+> ```
+> mongodb://<DB_USER>:<DB_PASSWORD>@ds115166.mlab.com:15166/node-mongodb-users
+> ```
 Om toegang te krijgen tot de database moeten we een user in de database aanmaken. `DB_USER` en `DB_PASSWORD` komen van deze user.
 
 5. Klik op de mLab site bij jouw database op de tab 'User' en klik rechts op 'Add database user'. Geef een naam en password. 
