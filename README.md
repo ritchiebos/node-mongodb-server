@@ -50,6 +50,15 @@ Om toegang te krijgen tot de database moeten we een user in de database aanmaken
 Je hebt nu een database met user. De connectionstring bouwen we in Nodejs op aan de hand van omgevingsvariabelen. Dat gebeurt in het bestand [./config/env/env.js](https://github.com/avansinformatica/node-mongodb-server/blob/master/config/env/env.js). 
 De omgevingsvariabelen moeten we bij op Heroku instellen bij de app waarin jouw server draait.
 
+### Een app op Heroku
+Om een app in de Heroku cloud te draaien doe je het volgende.
+1. Maak een [Heroku account](http://www.heroku.com) als je die nog niet hebt, en log in. 
+2. Maak een nieuwe app. Klik op 'New' en kies 'New app'. Geef een naam. Dit wordt de subdomeinnaam van jouw installatie.
+3. Ga in je app naar 'Settings' en klik bij 'Config vars' op 'Reveal config vars'. Maak de variabelen aan zoals hieronder genoemd.
+4. Ga in je app naar 'Deploy' en koppel je app aan je GitHub account. Selecteer de repository waarin je je Nodejs Mongodb server beheert.
+5. Klik bij 'Deploy' onderin het venster op 'Deploy'. Je app wordt nu opgehaald en geinstalleerd.
+6. Klik rechtsboven op 'Open app'. Als alles goed is gegaan is je app beschikbaar. Navigeer naar `/api/v1/users` om te zien of je app correct met je database verbonden is. Als dat niet zo is, check je omgevingsvariabelen. Niets verkeerd ingetypt?
+
 ### Omgevingsvariabelen
 Omgevingsvariabelen zijn variabelen waarin je configuratiewaarden kunt opslaan. Alleen degene met toegang tot de app op Heroku kent die waarden en kan ze instellen. Behoorlijk veilig dus. Je wilt die settings (bv username, password) namelijk niet hardcoded in je programmabestanden opslaan.
 
