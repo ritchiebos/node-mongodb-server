@@ -22,7 +22,6 @@ routes.get('/categories', function (req, res) {
 
 //
 // Return a category with all the recipes
-// Vorm van de URL: http://hostname:3000/api/v1/users/23
 //
 routes.get('/categories/:id', function (req, res) {
     const id = req.params.id
@@ -34,7 +33,6 @@ routes.get('/categories/:id', function (req, res) {
 
 //
 // Add a new category
-// Vorm van de URL: POST http://hostname:3000/api/v1/users
 //
 routes.post('/categories', function (req, res) {
     const catBod = req.body;
@@ -49,10 +47,7 @@ routes.post('/categories', function (req, res) {
 
 //
 // Update a category
-// Er zijn twee manieren om de id van de users mee te geven: via de request parameters (doen we hier)
-// of als property in de request body.
 //
-// Vorm van de URL: PUT http://hostname:3000/api/v1/users/23
 //
 routes.put('/categories/:id', function (req, res) {
 
@@ -68,10 +63,6 @@ routes.put('/categories/:id', function (req, res) {
 
 //
 // Delete a specific category
-// Er zijn twee manieren om de id van de users mee te geven: via de request parameters (doen we hier)
-// of als property in de request body.
-//
-// Vorm van de URL: DELETE http://hostname:3000/api/v1/users/23
 //
 routes.delete('/categories/:id', function (req, res) {
 const id = req.params.id;
