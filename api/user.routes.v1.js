@@ -18,6 +18,7 @@ routes.get('/categories', function (req, res) {
 }).catch((error) => {
         res.status(400).json(error);
 });
+    
 });
 
 //
@@ -32,24 +33,24 @@ routes.get('/categories/:id', function (req, res) {
 }).catch((error) => res.status(401).json(error));
 });
 
-
-routes.get('/categories/:id/recipes', function (req, res) {
-    const id = req.params.id
-    Category.findById(id)
-        .then((category) => {
-        res.status(200).json(category);
-}).catch((error) => res.status(401).json(error));
-});
-
 //
 // Add a new category
 // Vorm van de URL: POST http://hostname:3000/api/v1/users
 //
 routes.post('/categories', function (req, res) {
     const catBod = req.body;
-        Category.create(catBod)
-            .then((category) => res.status(201).json(category))
-            .catch((error) => res.status(401).json(error));
+    var cat =  new Category({
+        name: catBod.name,
+        recipes: catBod.recipes
+    });
+
+    cat.save((err, resp) => {
+        if (err) {
+            res.send({message: 'Something went wrong'});
+        } else {
+            res.send({message: 'New Category added'});
+        }
+    });
 
 });
 
@@ -58,11 +59,7 @@ routes.post('/categories', function (req, res) {
 // Vorm van de URL: POST http://hostname:3000/api/v1/users
 //
 routes.post('/categories/:id/recipe', function (req, res) {
-    const id = req.params.id;
-    var cat = Category.findById(id);
-    cat.recipes.create().then(
-        (recipe) => {res.status(201).json(category)}
-    ).catch((error) => res.status(401).json(error));
+
 });
 
 //
@@ -73,11 +70,11 @@ routes.post('/categories/:id/recipe', function (req, res) {
 // Vorm van de URL: PUT http://hostname:3000/api/v1/users/23
 //
 routes.put('/categories/:id', function (req, res) {
-        const id = req.params.id;
+        var id = req.params.id;
         const catBod = req.body;
 
         Category.findByIdAndUpdate(id, catBod)
-            .then((category) => {res.status(202).json(category)})
+            .then((category) => {res.send(category)})
             .catch((error) => {res.status(401).json(error)});
 });
 
@@ -98,12 +95,12 @@ Category.findByIdAndRemove(id)
 //
 // Delete a recipe from a category
 //
-routes.delete('/categories/:id/recipe/:id', function (req, res) {
+routes.delete('/categories/:id/recipe/:name', function (req, res) {
     const _id = req.params.id;
-    const recId = req.params.id;
-    var cat = Category.findById(id);
+    const recId = req.body.recipes.name;
+    var cat = Category.findById(_id);
     var rec = Category.recipes.findById(recId);
-    cat.recipes.remove(rec).then().catch();
+    cat.recipes.remove(rec).then((recipe)=>{res.status(204).json(recipe)}).catch((error) => {res.status(401).json(error)});
 
 
 });
