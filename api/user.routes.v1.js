@@ -48,14 +48,6 @@ routes.post('/categories', function (req, res) {
 });
 
 //
-// Add a new recipe to a category
-// Vorm van de URL: POST http://hostname:3000/api/v1/users
-//
-routes.post('/categories/:id/recipe', function (req, res) {
-
-});
-
-//
 // Update a category
 // Er zijn twee manieren om de id van de users mee te geven: via de request parameters (doen we hier)
 // of als property in de request body.
@@ -89,19 +81,6 @@ Category.findByIdAndRemove(id)
 });
 
 //
-// Delete a recipe from a category
-//
-routes.delete('/categories/:id/recipe/:name', function (req, res) {
-    const _id = req.params.id;
-    const recId = req.body.recipes.name;
-    var cat = Category.findById(_id);
-    var rec = Category.recipes.findById(recId);
-    cat.recipes.remove(rec).then((recipe)=>{res.status(204).json(recipe)}).catch((error) => {res.status(401).json(error)});
-
-
-});
-
-//
 // Delete all category
 //
 routes.delete('/categories', function (req, res) {
@@ -110,17 +89,5 @@ Category.remove()
     .catch((error) => {res.status(401).json(error)});
 });
 
-//
-// Delete all recipe from category
-//
-routes.delete('/categories/:id/recipe/', function (req, res) {
-const id = req.params.id;
-var cat = Category.findById(id);
-cat.recipes.remove().then((recipes)=>{res.status(204).json(recipes)})
-.catch((error) => {res.status(401).json(error)});
-
-
-
-});
 
 module.exports = routes;
