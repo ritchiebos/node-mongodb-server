@@ -5,6 +5,7 @@ var express = require('express');
 var routes = express.Router();
 var mongodb = require('../config/mongo.db');
 var User = require('../model/user.model');
+var Category = require('../model/category.model');
 
 //
 // Geef een lijst van alle users.
