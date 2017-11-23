@@ -18,7 +18,6 @@ routes.get('/categories', function (req, res) {
 }).catch((error) => {
         res.status(400).json(error);
 });
-    
 });
 
 //
@@ -39,18 +38,12 @@ routes.get('/categories/:id', function (req, res) {
 //
 routes.post('/categories', function (req, res) {
     const catBod = req.body;
-    var cat =  new Category({
+    const cat =  new Category({
         name: catBod.name,
         recipes: catBod.recipes
     });
 
-    cat.save((err, resp) => {
-        if (err) {
-            res.send({message: 'Something went wrong'});
-        } else {
-            res.send({message: 'New Category added'});
-        }
-    });
+    cat.save().then((category) => {res.send(category)}).catch((error) => {res.status(401).json(error)});
 
 });
 
@@ -70,12 +63,15 @@ routes.post('/categories/:id/recipe', function (req, res) {
 // Vorm van de URL: PUT http://hostname:3000/api/v1/users/23
 //
 routes.put('/categories/:id', function (req, res) {
-        var id = req.params.id;
-        const catBod = req.body;
 
-        Category.findByIdAndUpdate(id, catBod)
-            .then((category) => {res.send(category)})
-            .catch((error) => {res.status(401).json(error)});
+    const catBod = req.body;
+    const cat =  new Category({
+        name: catBod.name,
+        recipes: catBod.recipes
+    });
+
+    cat.save().then((category) => {res.send(category)}).catch((error) => {res.status(401).json(error)});
+
 });
 
 //
