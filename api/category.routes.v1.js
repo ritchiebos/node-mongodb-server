@@ -51,14 +51,17 @@ routes.post('/categories', function (req, res) {
 //
 routes.put('/categories/:id', function (req, res) {
 
-    const catBod = req.body;
-    const cat =  new Category({
-        name: catBod.name,
-        recipes: catBod.recipes
+    const categoryId = req.params.id
+
+    const cat = Category.findById(categoryId)
+    .then((category) => {
+
+        const catBod = req.body;
+        category.name = catBod.name;
+        category.recipes = catBod.recipes;
+    
+        category.save().then((category) => {res.send(category)}).catch((error) => {res.status(401).json(error)});
     });
-
-    cat.save().then((category) => {res.send(category)}).catch((error) => {res.status(401).json(error)});
-
 });
 
 //
